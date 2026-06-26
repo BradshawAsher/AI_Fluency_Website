@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bradshaw Asher - Engineering Portfolio</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-950 text-gray-100 min-h-screen flex items-center justify-center p-2 md:p-6 select-none">
+
+    <!-- IDE / Window Container -->
+    <div
+        class="w-full max-w-6xl h-[85vh] bg-gray-900 border border-gray-800 rounded-lg shadow-2xl flex flex-col overflow-hidden">
+
+        <!-- Window Top Header Bar -->
+        <div class="bg-gray-950 px-4 py-3 flex items-center justify-between border-b border-gray-800 shrink-0">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 rounded-full bg-red-500 opacity-80"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500 opacity-80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500 opacity-80"></div>
+                <span class="text-xs text-gray-500 font-mono ml-2 hidden sm:inline">bradshaw-asher-portfolio --
+                    v2.0.26</span>
+            </div>
+            <div class="text-xs text-gray-400 font-mono bg-gray-900 px-3 py-1 border border-gray-800 rounded">
+                ⚡ Mode: Interactive_Terminal
+            </div>
+        </div>
+
+        <!-- Main Dashboard Body -->
+        <div class="flex flex-1 overflow-hidden">
+
+            <!-- LEFT PANE: IDE Workspace Directory Tree (Clickable Sidebar) -->
+            <div
+                class="w-64 bg-gray-950/50 border-r border-gray-800 p-4 flex flex-col justify-between shrink-0 hidden md:flex">
+                <div>
+                    <div class="text-xs font-bold text-gray-500 tracking-wider uppercase mb-3">📁 WORKSPACE [src/]</div>
+                    <ul class="space-y-1 text-sm text-gray-400">
+                        <!-- Navigation Nodes -->
+                        <li>
+                            <button onclick="switchTab('bio')" id="btn-bio"
+                                class="w-full text-left px-2 py-1.5 rounded bg-gray-800 text-teal-400 font-medium flex items-center space-x-2 transition">
+                                <span>📄</span> <span>bio.md</span>
+                            </button>
+                        </li>
+                        <li class="pt-2">
+                            <div class="px-2 py-1 text-xs font-semibold text-gray-600 flex items-center space-x-1">
+                                <span>▼</span> <span>📁 production_projects</span>
+                            </div>
+                            <ul class="ml-4 border-l border-gray-800 pl-2 space-y-1 mt-1">
+                                <li>
+                                    <button onclick="switchTab('rag')" id="btn-rag"
+                                        class="w-full text-left px-2 py-1 rounded hover:bg-gray-900 hover:text-gray-200 transition flex items-center space-x-1">
+                                        <span>├─📄</span> <span class="truncate">01_rag_pipeline.md</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="switchTab('aws')" id="btn-aws"
+                                        class="w-full text-left px-2 py-1 rounded hover:bg-gray-900 hover:text-gray-200 transition flex items-center space-x-1">
+                                        <span>└─📄</span> <span class="truncate">02_aws_analyzer.md</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="pt-2">
+                            <button onclick="switchTab('blog')" id="btn-blog"
+                                class="w-full text-left px-2 py-1.5 rounded hover:bg-gray-900 hover:text-gray-200 transition flex items-center space-x-2">
+                                <span>📄</span> <span>tech_note.sh</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Terminal Block -->
+                <div class="border-t border-gray-800 pt-4">
+                    <div class="text-xs font-bold text-gray-500 tracking-wider uppercase mb-2">🛰️ NET_ENDPOINTS</div>
+                    <div class="text-xs space-y-1 font-mono text-gray-400">
+                        <div><span class="text-teal-500">→</span> <a href="https://github.com/BradshawAsher"
+                                target="_blank" class="hover:underline hover:text-teal-400">GitHub Profile</a></div>
+                        <div><span class="text-teal-500">→</span> <a href="mailto:basher@uw.edu"
+                                class="hover:underline hover:text-teal-400">Email Server</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANE: Active Output Display Screen -->
+            <div
+                class="flex-1 bg-gray-900/40 p-4 md:p-6 overflow-y-auto custom-scrollbar flex flex-col justify-between">
+
+                <!-- Tab Workspace Content Slots -->
+                <div class="w-full">
+
+                    <!-- Tab 1: Professional Bio (Active Default) -->
+                    <div id="tab-bio" class="tab-content space-y-6">
+                        <div class="text-xs text-gray-500 font-mono mb-2">[~/core_identity] $ cat bio.md</div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-100">Bradshaw Asher</h1>
+                            <p class="text-sm text-teal-400 mt-1 font-medium">Incoming Computer Science Major @
+                                University of Washington (Direct to Major, Interdisciplinary Honors)</p>
+                        </div>
+                        <p class="text-sm leading-relaxed text-gray-300 max-w-3xl border-l-2 border-teal-500 pl-4 py-1">
+                            I build highly decoupled, event-driven software infrastructure and autonomous AI data
+                            pipelines. Focused on eliminating synchronous architectural bottlenecks and optimizing
+                            retrieval systems across distributed cloud environments.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">▶ SYSTEM_CAPABILITIES:
+                            </div>
+                            <div
+                                class="overflow-x-auto border border-gray-800 rounded bg-gray-950 font-mono p-3 text-xs leading-relaxed text-gray-400 whitespace-pre">
+                                ┌─────────────────────┬────────────────────────────────────────────────────────┐
+                                │ Domain │ Core Technical Stack │
+                                ├─────────────────────┼────────────────────────────────────────────────────────┤
+                                │ AI Engineering │ Context-Aware RAG Pipelines, Vector DBs, Agentic Tools │
+                                │ Cloud Architecture │ Serverless Compute, Event-Driven Ingestion, AWS, S3 │
+                                │ Systems Engineering │ Type-Safe Backend Dev (.NET/C#), Async Task Pipelines │
+                                └─────────────────────┴────────────────────────────────────────────────────────┘</div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: CodePath RAG Project -->
+                    <div id="tab-rag" class="tab-content space-y-4 hidden">
+                        <div class="text-xs text-gray-500 font-mono">[~/projects/codepath-rag] $ cat
+                            production_summary.md</div>
+                        <div
+                            class="bg-gray-950 border border-gray-800 rounded p-4 space-y-4 text-xs md:text-sm font-mono">
+                            <div>
+                                <span class="text-teal-400 font-bold">▶ SYSTEM_IMPACT:</span>
+                                <span class="text-gray-300">Architected a local, low-latency Retrieval-Augmented
+                                    Generation (RAG) pipeline achieving sub-500ms end-to-end inference using
+                                    hardware-accelerated remote LLM inference endpoints.</span>
+                            </div>
+                            <div>
+                                <span class="text-teal-400 font-bold">▶ STACK:</span>
+                                <span class="text-gray-300">ChromaDB (Vector DB) | Groq API (Llama 3) | LangChain
+                                    (Orchestration) | Python</span>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-red-400 font-bold">▶ CHALLENGE:</span>
+                                <ul class="list-none pl-4 space-y-1 text-gray-400">
+                                    <li>1. <span class="text-gray-300 font-medium">Semantic Fragmenting:</span> Standard
+                                        token-based chunking cut off contextual data mid-sentence, leading to poor
+                                        embedding vector quality.</li>
+                                    <li>2. <span class="text-gray-300 font-medium">Rate-Limiting:</span> High-frequency
+                                        document processing caused immediate 429 Too Many Requests errors on Groq API
+                                        burst endpoints.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span class="text-green-400 font-bold">▶ OPTIMIZATION:</span>
+                                <span class="text-gray-300">Implemented a RecursiveCharacterTextSplitter with a
+                                    500-token chunk size and a 50-token semantic overlap to preserve document context.
+                                    Developed an asynchronous batch-processing queue with exponential backoff and jitter
+                                    to stay strictly under burst limits while maintaining pipeline throughput.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: AWS File Analyzer Project -->
+                    <div id="tab-aws" class="tab-content space-y-4 hidden">
+                        <div class="text-xs text-gray-500 font-mono">[~/projects/aws-file-analyzer] $ cat
+                            cloud_architecture.md</div>
+                        <div
+                            class="bg-gray-950 border border-gray-800 rounded p-4 space-y-4 text-xs md:text-sm font-mono">
+                            <div>
+                                <span class="text-teal-400 font-bold">▶ SYSTEM_IMPACT:</span>
+                                <span class="text-gray-300">Built a fully decoupled, serverless document ingestion and
+                                    analysis pipeline capable of processing multi-format payloads (PDFs, images, TXT)
+                                    asynchronously.</span>
+                            </div>
+                            <div>
+                                <span class="text-teal-400 font-bold">▶ STACK:</span>
+                                <span class="text-gray-300">AWS Lambda (Compute) | S3 (Storage) | API Gateway (Routing)
+                                    | Python / JavaScript</span>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-red-400 font-bold">▶ CHALLENGE:</span>
+                                <ul class="list-none pl-4 space-y-1 text-gray-400">
+                                    <li>1. <span class="text-gray-300 font-medium">Synchronous Bottlenecks:</span>
+                                        Handling high-volume file processing directly within the web server tier caused
+                                        thread starvation and HTTP timeout errors (504).</li>
+                                    <li>2. <span class="text-gray-300 font-medium">Cold Starts & Execution
+                                            Limits:</span> Processing multi-page payloads risked tripping Lambda
+                                        execution duration and memory thresholds.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span class="text-green-400 font-bold">▶ OPTIMIZATION:</span>
+                                <span class="text-gray-300">Refactored to an event-driven architecture; decoupled upload
+                                    routing via API Gateway into Amazon S3 buckets, which automatically triggers
+                                    localized AWS Lambda workers via S3 Event Notifications. Isolated file processing
+                                    into distinct micro-tasks to stay strictly within optimal execution windows.</span>
+                            </div>
+
+                            <!-- Embedded Architecture Flowchart -->
+                            <div class="border-t border-gray-800 pt-3 mt-2">
+                                <div class="text-xs text-gray-500 mb-2"># architecture_map.txt</div>
+                                <div class="overflow-x-auto text-xs text-teal-500 leading-none whitespace-pre py-1">
+                                    ┌──────────────┐ ┌─────────────┐ ┌───────────┐ ┌───────────────┐
+                                    │ Client App │ ───> │ API Gateway │ ───> │ S3 Bucket │ ───> │ AWS Lambda │
+                                    │ (Front-End) │ │ (Ingest/API)│ │ (Storage) │ │ (Async Parse) │
+                                    └──────────────┘ └─────────────┘ └───────────┘ └───────────────┘
+                                    │
+                                    ┌──────────────────────────┴──────────┐
+                                    ▼ ▼
+                                    ┌───────────────┐ ┌───────────────┐
+                                    │ Parse Images │ │ Parse PDFs & │
+                                    │ (AWS Lambda) │ │ Text Files │
+                                    └───────────────┘ └───────────────┘</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Technical Note Section -->
+                    <div id="tab-blog" class="tab-content space-y-4 hidden">
+                        <div class="text-xs text-gray-500 font-mono">[~/systems/notes] $
+                            ./view_lru_cache_optimization.sh</div>
+                        <div
+                            class="bg-gray-950 border border-gray-800 rounded p-4 space-y-3 text-xs md:text-sm font-mono">
+                            <h3 class="text-sm font-bold text-teal-400">🧠 Core Concept: Minimizing Latency via LRU
+                                Cache</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                When performing intensive database Lookups or Vector DB lookups, running raw network
+                                requests every time is a structural anti-pattern. An Least Recently Used (LRU) Cache
+                                discards the least recently used items first to ensure high-velocity data stays
+                                instantly readable in local memory.
+                            </p>
+                            <div class="space-y-1">
+                                <div class="text-xs font-bold text-gray-400">▶ TIME COMPLEXITY ANALYSIS:</div>
+                                <div class="text-gray-300 pl-4">
+                                    • Lookups (Get): <span class="text-green-400 font-bold">O(1)</span> Constant Time
+                                    via Hash Map tracking.<br>
+                                    • Evictions (Put): <span class="text-green-400 font-bold">O(1)</span> Constant Time
+                                    via Doubly Linked List node re-linking.
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs italic border-t border-gray-900 pt-2">
+                                Tip: Never back an LRU cache with a standard array/list; iterating through indices to
+                                shift elements on eviction destroys throughput by scaling linearly to O(N).
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Window Footer Navigation & Mobile Fallback Links -->
+                <div
+                    class="border-t border-gray-800 pt-4 mt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-mono space-y-3 sm:space-y-0">
+                    <!-- Mobile Menu Bar (Only reveals on small screens) -->
+                    <div class="flex flex-wrap gap-2 justify-center md:hidden">
+                        <button onclick="switchTab('bio')"
+                            class="bg-gray-950 px-2.5 py-1 border border-gray-800 rounded text-gray-300 hover:text-teal-400">bio.md</button>
+                        <button onclick="switchTab('rag')"
+                            class="bg-gray-950 px-2.5 py-1 border border-gray-800 rounded text-gray-300 hover:text-teal-400">01_rag</button>
+                        <button onclick="switchTab('aws')"
+                            class="bg-gray-950 px-2.5 py-1 border border-gray-800 rounded text-gray-300 hover:text-teal-400">02_aws</button>
+                        <button onclick="switchTab('blog')"
+                            class="bg-gray-950 px-2.5 py-1 border border-gray-800 rounded text-gray-300 hover:text-teal-400">notes</button>
+                    </div>
+                    <!-- System Metrics Line -->
+                    <div class="hidden sm:block">💾 Status: Active | 🌿 branch: main | 🛰️ Latency: 14ms</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab View Orchestration Script -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all text buffers
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Remove active accent class from sidebar selectors
+            document.querySelectorAll('[id^="btn-"]').forEach(el => {
+                el.classList.remove('bg-gray-800', 'text-teal-400', 'font-medium');
+                el.classList.add('text-gray-400');
+            });
+
+            // Display current selected workspace view
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            // Apply active styles to selected sidebar element
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-gray-800', 'text-teal-400', 'font-medium');
+                activeBtn.classList.remove('text-gray-400');
+            }
+        }
+    </script>
+</body>
+
+</html>
